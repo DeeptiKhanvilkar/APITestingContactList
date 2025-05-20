@@ -1,6 +1,6 @@
 from Utilities.ConfigReader import read_config
 from Utilities.ReadJson import read_json_file
-from Utilities.apiUtils import postAPIData, getAPIData
+from Utilities.apiUtils import postAPIData, getAPIData, add_contacts
 
 
 class TestGetSpecificContact:
@@ -15,8 +15,8 @@ class TestGetSpecificContact:
         response_data = login_response.json()
         token = response_data["token"]
         get_specific_contacts_endpoint = read_config("endpoints", "specific_contacts")
-        id= "6821138fdf49e700157f1274"
-        get_specifi_contact_response = getAPIData(baseurl, get_specific_contacts_endpoint+f"{id}", token)
+        param_list = add_contacts()
+        get_specifi_contact_response = getAPIData(baseurl, get_specific_contacts_endpoint+f"{param_list[1]}", token)
         assert get_specifi_contact_response.status_code == 200
         assert get_specifi_contact_response.elapsed.total_seconds() <= 500
 
