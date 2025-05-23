@@ -7,7 +7,7 @@ class TestDeleteContact:
 
     def test_delete_contact(self):
         baseurl = read_config("baseUrl", "url")
-        valid_json_file = '../TestData/validLogin.json'
+        valid_json_file = '../../TestData/validLogin.json'
         sheetname = "add_contacts_valid"
         row = 3
         payload = read_json_file(valid_json_file)

@@ -10,7 +10,7 @@ class TestGetAllContacts:
     get_contact_endpoint = read_config("endpoints", "contacts")
     # token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjAyOTZmMDYzOWVkODAwMTM3OGE5YWMiLCJpYXQiOjE3NDY2NTA4NzJ9.pkNYHewub-8q0eL-BXYj9no18BhZEuPO51YI__zodxk"
     def test_verify_get_all_contacts(self):
-        valid_json_file = '../TestData/validLogin.json'
+        valid_json_file = '../../TestData/validLogin.json'
         payload = read_json_file(valid_json_file)
         login_endpoint = read_config("endpoints", "login")
         login_response = postAPIData(self.baseurl, login_endpoint, payload)

@@ -7,7 +7,7 @@ class TestGetSpecificContact:
 
     def test_get_specific_contact(self):
         baseurl = read_config("baseUrl", "url")
-        valid_json_file = '../TestData/validLogin.json'
+        valid_json_file = '../../TestData/validLogin.json'
         payload = read_json_file(valid_json_file)
         login_endpoint = read_config("endpoints", "login")
         login_response = postAPIData(baseurl, login_endpoint, payload)

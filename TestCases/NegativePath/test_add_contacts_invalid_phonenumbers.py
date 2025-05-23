@@ -17,7 +17,7 @@ from schemas.add_contacts_schema import add_contacts_schema
 class TestAddContactsInvalid:
     baseurl = read_config("baseUrl", "url")
     sheetname = "add_contacts_invalid_phone"
-    valid_json_file = '../TestData/validLogin.json'
+    valid_json_file = '../../TestData/validLogin.json'
     add_contacts_endpoint = read_config("endpoints", "contacts")
     login_endpoint = read_config("endpoints", "login")
 
