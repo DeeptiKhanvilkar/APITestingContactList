@@ -22,7 +22,7 @@ class TestAddContactsInvalid:
 
     param_list = add_contacts()
 
-    def test_update_contacts_empty_phoneNumber(self):
+    def test_update_contacts_empty_phonenumber(self):
         baseurl = read_config("baseUrl", "url")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         row = 2
@@ -39,9 +39,9 @@ class TestAddContactsInvalid:
 
 
     # @pytest.mark.skip
-    def test_update_contacts_with_min_digits_phoneNumber(self):
-        add_contacts_endpoint = read_config("endpoints", "specific_contacts")
+    def test_update_contacts_with_min_digits_phonenumber(self):
         baseurl = read_config("baseUrl", "url")
+        add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number less than 6 digits
         row = 3
         print(get_add_contacts_payload(self.sheetname, row))
@@ -55,7 +55,7 @@ class TestAddContactsInvalid:
         assert response_data["message"] ==  "Validation failed: phone: Phone number is invalid"
 
     # @pytest.mark.skip
-    def test_update_contacts_with_more_than_max_digits_phoneNumber(self):
+    def test_update_contacts_with_more_than_max_digits_phonenumber(self):
         baseurl = read_config("baseUrl", "url")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number more than 15 digits
@@ -71,7 +71,7 @@ class TestAddContactsInvalid:
         assert response_data["message"] ==  "Validation failed: phone: Path `phone` (`1234567891234567`) is longer than the maximum allowed length (15)."
 
     # @pytest.mark.skip
-    def test_update_contacts_with_special_chars_phoneNumber(self):
+    def test_update_contacts_with_special_chars_phonenumber(self):
         baseurl = read_config("baseUrl", "url")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number with special chars
@@ -87,7 +87,7 @@ class TestAddContactsInvalid:
         assert response_data["message"] ==  "Validation failed: phone: Phone number is invalid"
 
     # @pytest.mark.skip
-    def test_update_contacts_with_decimal_number_phoneNumber(self):
+    def test_update_contacts_with_decimal_number_phonenumber(self):
         baseurl = read_config("baseUrl", "url")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number with decimal number
@@ -103,7 +103,7 @@ class TestAddContactsInvalid:
         assert response_data["message"] ==  "Validation failed: phone: Phone number is invalid"
 
     # @pytest.mark.skip
-    def test_update_contacts_with_negative_number_phoneNumber(self):
+    def test_update_contacts_with_negative_number_phonenumber(self):
         baseurl = read_config("baseUrl", "url")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number with negative numbers
@@ -120,7 +120,7 @@ class TestAddContactsInvalid:
         assert response_data["message"] ==  "Validation failed: phone: Phone number is invalid"
 
     # @pytest.mark.skip
-    def test_update_contacts_with_alphabets_phoneNumber(self):
+    def test_update_contacts_with_alphabets_phonenumber(self):
         baseurl = read_config("baseUrl", "url")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number with alphabets
@@ -136,7 +136,7 @@ class TestAddContactsInvalid:
         assert response_data["message"] ==  "Validation failed: phone: Phone number is invalid"
 
     # @pytest.mark.skip
-    def test_update_contacts_with_alphanumberic_phoneNumber(self):
+    def test_update_contacts_with_alphanumberic_phonenumber(self):
         baseurl = read_config("baseUrl", "url")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number with alphanumberic
