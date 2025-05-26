@@ -16,7 +16,7 @@ class TestLogin:
 
     # @pytest.mark.skip
     def test_verify_login(self):
-        valid_json_file = '../../TestData/validLogin.json'
+        valid_json_file = '../TestData/validLogin.json'
         payload = read_json_file(valid_json_file)
         response = postAPIData(self.baseurl, self.endpoint, payload)
         assert response.status_code == 200

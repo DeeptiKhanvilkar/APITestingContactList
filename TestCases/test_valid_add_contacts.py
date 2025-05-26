@@ -13,7 +13,7 @@ class TestAddContacts:
         baseurl = read_config("baseUrl", "url")
         sheetname = "add_contacts_valid"
         row = 3
-        valid_json_file = '../../TestData/validLogin.json'
+        valid_json_file = '../TestData/validLogin.json'
         payload = read_json_file(valid_json_file)
         login_endpoint = read_config("endpoints", "login")
         login_response = postAPIData(baseurl, login_endpoint, payload)
