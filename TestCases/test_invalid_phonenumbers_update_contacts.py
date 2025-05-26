@@ -16,19 +16,19 @@ from schemas.add_contacts_schema import add_contacts_schema
 
 
 class TestAddContactsInvalid:
-
     sheetname = "add_contacts_invalid_phone"
     valid_json_file = '../TestData/validLogin.json'
-    add_contacts_endpoint = read_config("endpoints", "specific_contacts")
+
 
     param_list = add_contacts()
 
     def test_update_contacts_empty_phoneNumber(self):
         baseurl = read_config("baseUrl", "url")
+        add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         row = 2
         print(self.param_list)
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, self.add_contacts_endpoint+self.param_list[1],
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint+self.param_list[1],
                                             get_add_contacts_payload(self.sheetname, row), self.param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
@@ -40,11 +40,12 @@ class TestAddContactsInvalid:
 
     # @pytest.mark.skip
     def test_update_contacts_with_min_digits_phoneNumber(self):
+        add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         baseurl = read_config("baseUrl", "url")
         # entering phone number less than 6 digits
         row = 3
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, self.add_contacts_endpoint+self.param_list[1],
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint+self.param_list[1],
                                             get_add_contacts_payload(self.sheetname, row), self.param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
@@ -56,10 +57,11 @@ class TestAddContactsInvalid:
     # @pytest.mark.skip
     def test_update_contacts_with_more_than_max_digits_phoneNumber(self):
         baseurl = read_config("baseUrl", "url")
+        add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number more than 15 digits
         row = 4
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, self.add_contacts_endpoint+self.param_list[1],
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint+self.param_list[1],
                                             get_add_contacts_payload(self.sheetname, row), self.param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
@@ -71,10 +73,11 @@ class TestAddContactsInvalid:
     # @pytest.mark.skip
     def test_update_contacts_with_special_chars_phoneNumber(self):
         baseurl = read_config("baseUrl", "url")
+        add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number with special chars
         row = 5
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, self.add_contacts_endpoint+self.param_list[1],
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint+self.param_list[1],
                                             get_add_contacts_payload(self.sheetname, row), self.param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
@@ -86,10 +89,11 @@ class TestAddContactsInvalid:
     # @pytest.mark.skip
     def test_update_contacts_with_decimal_number_phoneNumber(self):
         baseurl = read_config("baseUrl", "url")
+        add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number with decimal number
         row = 6
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, self.add_contacts_endpoint + self.param_list[1],
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + self.param_list[1],
                                                      get_add_contacts_payload(self.sheetname, row), self.param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
@@ -101,10 +105,11 @@ class TestAddContactsInvalid:
     # @pytest.mark.skip
     def test_update_contacts_with_negative_number_phoneNumber(self):
         baseurl = read_config("baseUrl", "url")
+        add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number with negative numbers
         row = 7
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, self.add_contacts_endpoint + self.param_list[1],
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + self.param_list[1],
                                                      get_add_contacts_payload(self.sheetname, row), self.param_list[0])
         response_data = add_contacts_response.json()
 
@@ -117,10 +122,11 @@ class TestAddContactsInvalid:
     # @pytest.mark.skip
     def test_update_contacts_with_alphabets_phoneNumber(self):
         baseurl = read_config("baseUrl", "url")
+        add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number with alphabets
         row = 8
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, self.add_contacts_endpoint + self.param_list[1],
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + self.param_list[1],
                                                      get_add_contacts_payload(self.sheetname, row), self.param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
@@ -132,10 +138,11 @@ class TestAddContactsInvalid:
     # @pytest.mark.skip
     def test_update_contacts_with_alphanumberic_phoneNumber(self):
         baseurl = read_config("baseUrl", "url")
+        add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number with alphanumberic
         row = 9
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, self.add_contacts_endpoint + self.param_list[1],
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + self.param_list[1],
                                                      get_add_contacts_payload(self.sheetname, row), self.param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
