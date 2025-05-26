@@ -11,14 +11,15 @@ from TestData import *
 
 
 class TestLogin:
-    baseurl = read_config("baseUrl", "url")
-    endpoint = read_config("endpoints", "login")
+
 
     # @pytest.mark.skip
     def test_verify_login(self):
+        baseurl = read_config("baseUrl", "url")
+        endpoint = read_config("endpoints", "login")
         valid_json_file = '../TestData/validLogin.json'
         payload = read_json_file(valid_json_file)
-        response = postAPIData(self.baseurl, self.endpoint, payload)
+        response = postAPIData(baseurl, endpoint, payload)
         assert response.status_code == 200
         assert response.elapsed.total_seconds() <= 500
         response_data = response.json()

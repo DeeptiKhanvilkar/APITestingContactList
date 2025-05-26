@@ -16,21 +16,23 @@ from schemas.add_contacts_schema import add_contacts_schema
 
 class TestAddContactsInvalid:
     sheetname = "add_contacts_invalid_postalcode"
-    baseurl = read_config("baseUrl", "url")
+
     valid_json_file = '../TestData/validLogin.json'
     add_contacts_endpoint = read_config("endpoints", "contacts")
-    login_endpoint = read_config("endpoints", "login")
+
 
     def test_add_contacts_empty_postal(self):
+        baseurl = read_config("baseUrl", "url")
+        login_endpoint = read_config("endpoints", "login")
         # Entering empty string
         row = 2
         payload = read_json_file(self.valid_json_file)
-        login_response = postAPIData(self.baseurl, self.login_endpoint, payload)
+        login_response = postAPIData(baseurl, login_endpoint, payload)
         assert login_response.status_code == 200
         response_data = login_response.json()
         token = response_data["token"]
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = postAPIData_withToken(self.baseurl, self.add_contacts_endpoint,
+        add_contacts_response = postAPIData_withToken(baseurl, self.add_contacts_endpoint,
                                             get_add_contacts_payload(self.sheetname, row), token)
         response_data = add_contacts_response.json()
 
@@ -42,15 +44,17 @@ class TestAddContactsInvalid:
 
 
     def test_add_contacts_with_min_digits_postalcode(self):
+        baseurl = read_config("baseUrl", "url")
+        login_endpoint = read_config("endpoints", "login")
         # entering postalcode less than 3 digits
         row = 3
         payload = read_json_file(self.valid_json_file)
-        login_response = postAPIData(self.baseurl, self.login_endpoint, payload)
+        login_response = postAPIData(baseurl, login_endpoint, payload)
         assert login_response.status_code == 200
         response_data = login_response.json()
         token = response_data["token"]
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = postAPIData_withToken(self.baseurl, self.add_contacts_endpoint,
+        add_contacts_response = postAPIData_withToken(baseurl, self.add_contacts_endpoint,
                                             get_add_contacts_payload(self.sheetname, row), token)
         response_data = add_contacts_response.json()
 
@@ -62,15 +66,17 @@ class TestAddContactsInvalid:
 
 
     def test_add_contacts_with_more_than_max_digits_postalcode(self):
+        baseurl = read_config("baseUrl", "url")
+        login_endpoint = read_config("endpoints", "login")
         # entering postal code more than 10 digits
         row = 4
         payload = read_json_file(self.valid_json_file)
-        login_response = postAPIData(self.baseurl, self.login_endpoint, payload)
+        login_response = postAPIData(baseurl, login_endpoint, payload)
         assert login_response.status_code == 200
         response_data = login_response.json()
         token = response_data["token"]
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = postAPIData_withToken(self.baseurl, self.add_contacts_endpoint,
+        add_contacts_response = postAPIData_withToken(baseurl, self.add_contacts_endpoint,
                                             get_add_contacts_payload(self.sheetname, row), token)
         response_data = add_contacts_response.json()
         print(response_data["message"])
@@ -80,15 +86,17 @@ class TestAddContactsInvalid:
         assert response_data["message"] ==  "Contact validation failed: postalCode: Path `postalCode` (`52410012457`) is longer than the maximum allowed length (10)."
 
     def test_add_contacts_with_special_chars_postalcode(self):
+        baseurl = read_config("baseUrl", "url")
+        login_endpoint = read_config("endpoints", "login")
         # entering postal code with special chars
         row = 5
         payload = read_json_file(self.valid_json_file)
-        login_response = postAPIData(self.baseurl, self.login_endpoint, payload)
+        login_response = postAPIData(baseurl, login_endpoint, payload)
         assert login_response.status_code == 200
         response_data = login_response.json()
         token = response_data["token"]
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = postAPIData_withToken(self.baseurl, self.add_contacts_endpoint,
+        add_contacts_response = postAPIData_withToken(baseurl, self.add_contacts_endpoint,
                                             get_add_contacts_payload(self.sheetname, row), token)
         response_data = add_contacts_response.json()
         print(response_data["message"])
@@ -99,15 +107,17 @@ class TestAddContactsInvalid:
 
 
     def test_add_contacts_with_decimal_number_postalcode(self):
+        baseurl = read_config("baseUrl", "url")
+        login_endpoint = read_config("endpoints", "login")
         row = 6
         payload = read_json_file(self.valid_json_file)
 
-        login_response = postAPIData(self.baseurl, login_endpoint, payload)
+        login_response = postAPIData(baseurl, login_endpoint, payload)
         assert login_response.status_code == 200
         response_data = login_response.json()
         token = response_data["token"]
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = postAPIData_withToken(self.baseurl, self.add_contacts_endpoint,
+        add_contacts_response = postAPIData_withToken(baseurl, self.add_contacts_endpoint,
                                             get_add_contacts_payload(self.sheetname, row), token)
         response_data = add_contacts_response.json()
 
@@ -119,14 +129,16 @@ class TestAddContactsInvalid:
 
     def test_add_contacts_with_negative_number_postalcode(self):
         # entering postal code with negative number
+        baseurl = read_config("baseUrl", "url")
+        login_endpoint = read_config("endpoints", "login")
         row = 7
         payload = read_json_file(self.valid_json_file)
-        login_response = postAPIData(self.baseurl, self.login_endpoint, payload)
+        login_response = postAPIData(baseurl, login_endpoint, payload)
         assert login_response.status_code == 200
         response_data = login_response.json()
         token = response_data["token"]
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = postAPIData_withToken(self.baseurl, self.add_contacts_endpoint,
+        add_contacts_response = postAPIData_withToken(baseurl, self.add_contacts_endpoint,
                                             get_add_contacts_payload(self.sheetname, row), token)
         response_data = add_contacts_response.json()
 
@@ -138,14 +150,16 @@ class TestAddContactsInvalid:
 
     def test_add_contacts_with_alphabets_postalcode(self):
         # entering postal code alphabets
+        baseurl = read_config("baseUrl", "url")
+        login_endpoint = read_config("endpoints", "login")
         row = 8
         payload = read_json_file(self.valid_json_file)
-        login_response = postAPIData(self.baseurl, self.login_endpoint, payload)
+        login_response = postAPIData(baseurl, login_endpoint, payload)
         assert login_response.status_code == 200
         response_data = login_response.json()
         token = response_data["token"]
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = postAPIData_withToken(self.baseurl, self.add_contacts_endpoint,
+        add_contacts_response = postAPIData_withToken(baseurl, self.add_contacts_endpoint,
                                             get_add_contacts_payload(self.sheetname, row), token)
         response_data = add_contacts_response.json()
         print(response_data["message"])
@@ -155,15 +169,17 @@ class TestAddContactsInvalid:
         assert response_data["message"] ==  "Contact validation failed: postalCode: Postal code is invalid"
 
     def test_add_contacts_with_alphanumberic_phoneNumber(self):
+        baseurl = read_config("baseUrl", "url")
+        login_endpoint = read_config("endpoints", "login")
         # entering postal code with alphanumeric
         row = 9
         payload = read_json_file(self.valid_json_file)
-        login_response = postAPIData(self.baseurl, self.login_endpoint, payload)
+        login_response = postAPIData(baseurl, login_endpoint, payload)
         assert login_response.status_code == 200
         response_data = login_response.json()
         token = response_data["token"]
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = postAPIData_withToken(self.baseurl, self.add_contacts_endpoint,
+        add_contacts_response = postAPIData_withToken(baseurl, self.add_contacts_endpoint,
                                             get_add_contacts_payload(self.sheetname, row), token)
         response_data = add_contacts_response.json()
         print(response_data["message"])
