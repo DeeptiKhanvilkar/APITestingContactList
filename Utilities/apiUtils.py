@@ -43,6 +43,7 @@ def putAPIData_withToken(url, endpoint, body, token):
 def add_contacts():
     sheetname = "add_contacts_valid"
     baseurl = read_config("baseUrl", "url")
+    print(baseurl)
     login_endpoint = read_config("endpoints", "login")
     valid_json_file = '../TestData/validLogin.json'
     add_contacts_endpoint = read_config("endpoints", "contacts")
