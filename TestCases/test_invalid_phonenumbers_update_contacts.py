@@ -20,16 +20,17 @@ class TestAddContactsInvalid:
     valid_json_file = '../TestData/validLogin.json'
 
 
-    param_list = add_contacts()
+
 
     def test_update_contacts_empty_phonenumber(self):
+        param_list = add_contacts()
         baseurl = read_config("baseUrl", "url")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         row = 2
-        print(self.param_list)
+        print(param_list)
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint+self.param_list[1],
-                                            get_add_contacts_payload(self.sheetname, row), self.param_list[0])
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint+param_list[1],
+                                            get_add_contacts_payload(self.sheetname, row), param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
         assert add_contacts_response.status_code == 400
@@ -40,13 +41,14 @@ class TestAddContactsInvalid:
 
     # @pytest.mark.skip
     def test_update_contacts_with_min_digits_phonenumber(self):
+        param_list = add_contacts()
         baseurl = read_config("baseUrl", "url")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number less than 6 digits
         row = 3
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint+self.param_list[1],
-                                            get_add_contacts_payload(self.sheetname, row), self.param_list[0])
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint+param_list[1],
+                                            get_add_contacts_payload(self.sheetname, row), param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
         assert add_contacts_response.status_code == 400
@@ -56,13 +58,14 @@ class TestAddContactsInvalid:
 
     # @pytest.mark.skip
     def test_update_contacts_with_more_than_max_digits_phonenumber(self):
+        param_list = add_contacts()
         baseurl = read_config("baseUrl", "url")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number more than 15 digits
         row = 4
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint+self.param_list[1],
-                                            get_add_contacts_payload(self.sheetname, row), self.param_list[0])
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint+param_list[1],
+                                            get_add_contacts_payload(self.sheetname, row), param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
         assert add_contacts_response.status_code == 400
@@ -72,13 +75,14 @@ class TestAddContactsInvalid:
 
     # @pytest.mark.skip
     def test_update_contacts_with_special_chars_phonenumber(self):
+        param_list = add_contacts()
         baseurl = read_config("baseUrl", "url")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number with special chars
         row = 5
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint+self.param_list[1],
-                                            get_add_contacts_payload(self.sheetname, row), self.param_list[0])
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint+param_list[1],
+                                            get_add_contacts_payload(self.sheetname, row), param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
         assert add_contacts_response.status_code == 400
@@ -88,13 +92,14 @@ class TestAddContactsInvalid:
 
     # @pytest.mark.skip
     def test_update_contacts_with_decimal_number_phonenumber(self):
+        param_list = add_contacts()
         baseurl = read_config("baseUrl", "url")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number with decimal number
         row = 6
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + self.param_list[1],
-                                                     get_add_contacts_payload(self.sheetname, row), self.param_list[0])
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + param_list[1],
+                                                     get_add_contacts_payload(self.sheetname, row), param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
         assert add_contacts_response.status_code == 400
@@ -104,13 +109,14 @@ class TestAddContactsInvalid:
 
     # @pytest.mark.skip
     def test_update_contacts_with_negative_number_phonenumber(self):
+        param_list = add_contacts()
         baseurl = read_config("baseUrl", "url")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number with negative numbers
         row = 7
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + self.param_list[1],
-                                                     get_add_contacts_payload(self.sheetname, row), self.param_list[0])
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + param_list[1],
+                                                     get_add_contacts_payload(self.sheetname, row), param_list[0])
         response_data = add_contacts_response.json()
 
         print(response_data["message"])
@@ -121,13 +127,14 @@ class TestAddContactsInvalid:
 
     # @pytest.mark.skip
     def test_update_contacts_with_alphabets_phonenumber(self):
+        param_list = add_contacts()
         baseurl = read_config("baseUrl", "url")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number with alphabets
         row = 8
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + self.param_list[1],
-                                                     get_add_contacts_payload(self.sheetname, row), self.param_list[0])
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + param_list[1],
+                                                     get_add_contacts_payload(self.sheetname, row), param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
         assert add_contacts_response.status_code == 400
@@ -137,13 +144,14 @@ class TestAddContactsInvalid:
 
     # @pytest.mark.skip
     def test_update_contacts_with_alphanumberic_phonenumber(self):
+        param_list = add_contacts()
         baseurl = read_config("baseUrl", "url")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
         # entering phone number with alphanumberic
         row = 9
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + self.param_list[1],
-                                                     get_add_contacts_payload(self.sheetname, row), self.param_list[0])
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + param_list[1],
+                                                     get_add_contacts_payload(self.sheetname, row), param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
         assert add_contacts_response.status_code == 400

@@ -13,9 +13,10 @@ from Utilities.apiUtils import postAPIData, add_contacts, putAPIData_withToken
 class TestAddContactsInvalid:
     sheetname = "add_contacts_invalid_postalcode"
     valid_json_file = '../TestData/validLogin.json'
-    param_list = add_contacts()
+
 
     def test_add_contacts_empty_postal(self):
+        param_list = add_contacts()
         baseurl = read_config("baseUrl", "url")
         login_endpoint = read_config("endpoints", "login")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
@@ -25,8 +26,8 @@ class TestAddContactsInvalid:
         login_response = postAPIData(baseurl, login_endpoint, payload)
         assert login_response.status_code == 200
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + self.param_list[1],
-                                                     get_add_contacts_payload(self.sheetname, row), self.param_list[0])
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + param_list[1],
+                                                     get_add_contacts_payload(self.sheetname, row), param_list[0])
         response_data = add_contacts_response.json()
 
         print(response_data["message"])
@@ -37,6 +38,7 @@ class TestAddContactsInvalid:
 
 
     def test_add_contacts_with_min_digits_postalcode(self):
+        param_list = add_contacts()
         baseurl = read_config("baseUrl", "url")
         login_endpoint = read_config("endpoints", "login")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
@@ -46,8 +48,8 @@ class TestAddContactsInvalid:
         login_response = postAPIData(baseurl, login_endpoint, payload)
         assert login_response.status_code == 200
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + self.param_list[1],
-                                                     get_add_contacts_payload(self.sheetname, row), self.param_list[0])
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + param_list[1],
+                                                     get_add_contacts_payload(self.sheetname, row), param_list[0])
         response_data = add_contacts_response.json()
 
         print(response_data["message"])
@@ -58,6 +60,7 @@ class TestAddContactsInvalid:
 
 
     def test_add_contacts_with_more_than_max_digits_postalcode(self):
+        param_list = add_contacts()
         baseurl = read_config("baseUrl", "url")
         login_endpoint = read_config("endpoints", "login")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
@@ -67,8 +70,8 @@ class TestAddContactsInvalid:
         login_response = postAPIData(baseurl, login_endpoint, payload)
         assert login_response.status_code == 200
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + self.param_list[1],
-                                                     get_add_contacts_payload(self.sheetname, row), self.param_list[0])
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + param_list[1],
+                                                     get_add_contacts_payload(self.sheetname, row), param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
         assert add_contacts_response.status_code == 400
@@ -77,6 +80,7 @@ class TestAddContactsInvalid:
         assert response_data["message"] ==  "Validation failed: postalCode: Path `postalCode` (`52410012457`) is longer than the maximum allowed length (10)."
 
     def test_add_contacts_with_special_chars_postalcode(self):
+        param_list = add_contacts()
         baseurl = read_config("baseUrl", "url")
         login_endpoint = read_config("endpoints", "login")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
@@ -87,8 +91,8 @@ class TestAddContactsInvalid:
         assert login_response.status_code == 200
 
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + self.param_list[1],
-                                                     get_add_contacts_payload(self.sheetname, row), self.param_list[0])
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + param_list[1],
+                                                     get_add_contacts_payload(self.sheetname, row), param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
         assert add_contacts_response.status_code == 400
@@ -98,6 +102,7 @@ class TestAddContactsInvalid:
 
 
     def test_add_contacts_with_decimal_number_postalcode(self):
+        param_list = add_contacts()
         baseurl = read_config("baseUrl", "url")
         login_endpoint = read_config("endpoints", "login")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
@@ -107,8 +112,8 @@ class TestAddContactsInvalid:
         login_response = postAPIData(baseurl, login_endpoint, payload)
         assert login_response.status_code == 200
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + self.param_list[1],
-                                                     get_add_contacts_payload(self.sheetname, row), self.param_list[0])
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + param_list[1],
+                                                     get_add_contacts_payload(self.sheetname, row), param_list[0])
         response_data = add_contacts_response.json()
 
         print(response_data["message"])
@@ -118,6 +123,7 @@ class TestAddContactsInvalid:
         assert response_data["message"] ==  "Validation failed: postalCode: Postal code is invalid"
 
     def test_add_contacts_with_negative_number_postalcode(self):
+        param_list = add_contacts()
         baseurl = read_config("baseUrl", "url")
         login_endpoint = read_config("endpoints", "login")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
@@ -127,8 +133,8 @@ class TestAddContactsInvalid:
         login_response = postAPIData(baseurl, login_endpoint, payload)
         assert login_response.status_code == 200
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + self.param_list[1],
-                                                     get_add_contacts_payload(self.sheetname, row), self.param_list[0])
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + param_list[1],
+                                                     get_add_contacts_payload(self.sheetname, row), param_list[0])
         response_data = add_contacts_response.json()
 
         print(response_data["message"])
@@ -138,6 +144,7 @@ class TestAddContactsInvalid:
         assert response_data["message"] ==  "Validation failed: postalCode: Postal code is invalid"
 
     def test_add_contacts_with_alphabets_postalcode(self):
+        param_list = add_contacts()
         baseurl = read_config("baseUrl", "url")
         login_endpoint = read_config("endpoints", "login")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
@@ -147,8 +154,8 @@ class TestAddContactsInvalid:
         login_response = postAPIData(baseurl, login_endpoint, payload)
         assert login_response.status_code == 200
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + self.param_list[1],
-                                                     get_add_contacts_payload(self.sheetname, row), self.param_list[0])
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + param_list[1],
+                                                     get_add_contacts_payload(self.sheetname, row), param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
         assert add_contacts_response.status_code == 400
@@ -157,6 +164,7 @@ class TestAddContactsInvalid:
         assert response_data["message"] ==  "Validation failed: postalCode: Postal code is invalid"
 
     def test_add_contacts_with_alphanumberic_phonenumber(self):
+        param_list = add_contacts()
         baseurl = read_config("baseUrl", "url")
         login_endpoint = read_config("endpoints", "login")
         add_contacts_endpoint = read_config("endpoints", "specific_contacts")
@@ -166,8 +174,8 @@ class TestAddContactsInvalid:
         login_response = postAPIData(baseurl, login_endpoint, payload)
         assert login_response.status_code == 200
         print(get_add_contacts_payload(self.sheetname, row))
-        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + self.param_list[1],
-                                                     get_add_contacts_payload(self.sheetname, row), self.param_list[0])
+        add_contacts_response = putAPIData_withToken(baseurl, add_contacts_endpoint + param_list[1],
+                                                     get_add_contacts_payload(self.sheetname, row), param_list[0])
         response_data = add_contacts_response.json()
         print(response_data["message"])
         assert add_contacts_response.status_code == 400
